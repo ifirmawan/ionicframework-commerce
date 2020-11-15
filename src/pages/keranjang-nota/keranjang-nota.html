@@ -1,0 +1,131 @@
+<!--
+  Generated template for the KeranjangNotaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+    <ion-navbar color="kuning">
+      <ion-title>NOTA PEMBELIAN</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-avatar item-start>
+        <img src="{{ toko?.path_foto }}">
+      </ion-avatar>
+      <h2 ion-text color="dark"><strong>{{ toko?.nama | uppercase }}</strong></h2>
+      <h3>Telp. {{ toko?.nohp }}</h3>
+      <p>{{ toko?.alamat }}&nbsp;</p>
+    </ion-list-header>
+
+    <ion-item>
+      Limit Hutang Toko:
+      <ion-note color="danger" item-end>
+        <strong>Rp, {{ toko?.limit_hutang }}</strong>
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Hutang TOko Saat Ini:
+      <ion-note color="danger" item-end>
+        <strong>Rp, {{ toko?.hutang }}</strong>
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Jumlah Total ({{ count }} Kuantitas):
+      <ion-note color="danger" item-end>
+        <strong>Rp, {{ total }}</strong>
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Jumlah Diskon:
+      <ion-note color="danger" item-end>
+        <strong>- Rp, {{ diskoncash }}</strong>
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      Total Sebelum Diskon:
+      <ion-note color="danger" item-end>
+        <strong>Rp, <span style="text-decoration: line-through">{{ totalsblm }}</span></strong>
+      </ion-note>
+    </ion-item>
+    
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-icon item-start name="basket"></ion-icon>
+      <b>Daftar Barang</b>
+      <ion-note item-end>
+        <b>{{ count }} Kuantitas</b>
+      </ion-note>
+    </ion-list-header>
+
+    <ion-item *ngFor="let item of items">
+      <ion-thumbnail small item-start>
+        <img src="{{ item.path_gambar }}">
+      </ion-thumbnail>
+      <h3><b>{{ item.nama | uppercase }}</b></h3>
+      <p>{{ item.ket }} &nbsp;</p>
+      <ion-badge color="kuning" *ngIf="item.diskon_spc != 0">Diskon Grosir : - {{ item.diskon_spc }}%</ion-badge>
+      <ion-badge color="kuning" *ngIf="item.diskon_opt != 0">Diskon Sales : - {{ item.diskon_opt }}%</ion-badge>
+      <h5 ion-text color="primary"><b>Rp, {{ item.total }}</b></h5>
+      <p style="text-decoration: line-through" *ngIf="item.diskon_spc != 0 || item.diskon_opt != 0">Rp, {{ item.harga * item.qty }}</p>
+      <ion-note color="dark" item-end>
+        {{ item.qty }}&nbsp;{{ item.satuan }}
+      </ion-note>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-icon name="cash" item-start></ion-icon>
+      Down Payment (DP) - Bila ada.
+    </ion-list-header>
+    <ion-item>
+        <ion-label>
+            RP.
+          </ion-label>
+        <ion-input type="number" placeholder="Down Payment" [(ngModel)]="downpayment"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <h5 text-center>Tanda Tangan</h5>
+  
+  <signature-pad [options]="signaturePadOptions"  id="signatureCanvas"></signature-pad>
+  
+  <ion-item padding>
+    <ion-input type="text" placeholder="Atas Nama" [(ngModel)]="atasnama"></ion-input>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <!-- <ion-col col-4>
+        <button ion-button full color="danger" (click)="drawCancel()">Cancel</button> 
+      </ion-col> -->
+      <ion-col col-12>
+        <button ion-button full color="kuning" (click)="drawClear()" mode="ios">Hapus Tanda Tangan</button> 
+      </ion-col>
+      <!-- <ion-col col-4>
+        <button ion-button full color="secondary" (click)="drawComplete()">Done</button> 
+      </ion-col> -->
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-row padding>
+    <button ion-button full color="primary" mode="ios" (click)="funcProsesPesanan()">
+      Proses Pesanan
+    </button>
+  </ion-row>
+</ion-footer>

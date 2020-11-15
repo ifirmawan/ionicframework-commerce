@@ -1,0 +1,44 @@
+page-masuk {
+	body {
+        overflow: hidden;
+    }
+    ion-content {
+        background-color: color($colors, 'light') !important;
+        
+        ion-list ion-item {
+            padding-top: 1em !important;
+        }
+
+        div.logo{
+            padding-top: 4em;
+            img {
+                max-width: 15rem;
+                height: auto;
+            }
+        }
+
+        ion-buttons {
+            margin-top: 2em;
+        }
+    }
+
+    .item.item-input.item-input-has-focus .item-inner, .item.item-input.input-has-focus .item-inner, .item.item-input.item-input-has-focus:last-child, .item.item-input.input-has-focus:last-child {
+        border-bottom-color: color($colors, 'dark');
+        -webkit-box-shadow: inset 0 -1px 0 0 color($colors, 'dark');
+        box-shadow: inset 0 -1px 0 0 color($colors, 'dark');
+    }
+
+    .item.item-input.item-input-has-focus ion-label, .item.item-block ion-label {
+        color: color($colors, 'dark');
+    }
+
+    .item.item-block .item-inner, .item.item-input:last-child {
+        border-bottom: 1px solid color($colors, 'dark');
+    }
+
+    .button_pwd {
+    	position: absolute;
+    	right: 0;
+    	margin-top: 1.5em;
+    }
+}

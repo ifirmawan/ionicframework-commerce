@@ -1,0 +1,29 @@
+page-beranda {
+
+	.img-thumbnailku {
+		width: 100%;
+		height: 12rem;
+		padding: 1em;
+	}
+
+	.thumb-beranda {
+		border: 1px solid #f3f3f3;
+		margin-bottom: 1em;
+	}
+
+	.img-thumbnailku {
+		padding: 0px;
+		
+		img {
+			width: 100%;
+			height: 100%;
+			background-color: color($colors, 'dark');
+		}
+	}
+
+	.thumb-beranda {
+		.item-inner {
+			padding-right: 0px !important;
+		}
+	}
+}

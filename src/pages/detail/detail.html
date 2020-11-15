@@ -1,0 +1,156 @@
+<!--
+  Generated template for the DetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content class="container">
+	<ion-refresher (ionRefresh)="getItemDetails($event)">
+		<ion-refresher-content
+		pullingIcon="arrow-dropdown"
+		pullingText="Pull to refresh"
+		refreshingSpinner="crescent"
+		refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
+
+	<ion-navbar color="kuning">
+	</ion-navbar>
+
+	<ion-fab top right>
+		<button ion-fab mini color="jdid" (click)="funcDiskonOptional()">
+			<ion-icon name="pricetags"></ion-icon>
+		</button>
+		<!-- <ion-fab-list>
+			<button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+			<button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+			<button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+			<button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+		</ion-fab-list> -->
+	</ion-fab>
+
+ 	<div class="card-profile">
+	    <div class="card-profile_visual">
+	    	<ion-slides pager="true" loop="true" *ngIf="detailitem.length != 0">
+	    		<ion-slide>
+	    			<img src="{{ detailitem.path_gambar }}" alt="gambar 1">
+	    		</ion-slide>
+	    		<ion-slide>
+	    			<img src="{{ detailitem.path_gambar2 }}" alt="gambar 2">
+	    		</ion-slide>
+	    		<ion-slide>
+	    			<img src="{{ detailitem.path_gambar3 }}" alt="gambar 3">
+	    		</ion-slide>
+	    	</ion-slides>
+	    </div>
+	    <div class="card-profile_user-infos">
+	      <a href="#" (click)="buttonKeKeranjang()">
+	      	<ion-icon name="cart" style="font-size: 2em;color: #222; margin-top: 0.7em;"></ion-icon>
+	      </a>
+	    </div>
+	    <div class="card-profile_user-stats">
+	    	<div class="stats-holder" ion-text padding>
+				<div class="user-stats" style="text-align: left;">
+					<strong>Nama Barang</strong>
+					<span>{{ detailitem.nama }}</span>
+				</div>
+				<div class="user-stats" style="text-align: right;">
+					<strong>Harga</strong>
+					<span>Rp, {{ detailitem.harga }}</span>
+				</div>
+			</div>
+	    </div>
+
+		<ion-list float>
+			
+			<ion-list-header color="kuning">
+				Detail Produk
+			</ion-list-header>
+			<ion-item text-wrap class="deskripsi-produk">
+				<p>Nama Barang</p>
+				<h2 text-capitalize>{{ detailitem.nama }}</h2>
+				<p>Kode Barang</p>
+				<h2 text-capitalize>{{ detailitem.kode }}</h2>
+				<p>Detail Produk</p>
+				<p>
+					<strong>
+						{{ detailitem.ket }}
+			    </strong>
+			</p>
+			</ion-item>
+
+			<ion-list-header color="kuning" *ngIf="detailitem.min_jual != 0">
+				Grosir
+		  	</ion-list-header>
+		  	<ion-item text-wrap class="deskripsi-produk" *ngIf="detailitem.min_jual != 0">
+				<p>Minimum Grosir</p>
+				<h2 text-capitalize>{{ detailitem.min_jual }} {{ detailitem.satuan }}</h2>
+				<p>Diskon Grosir</p>
+				<h2 text-capitalize>{{ detailitem.cash_discount }} %</h2>
+			</ion-item>
+
+		</ion-list>
+	</div>
+</ion-content>
+
+<ion-footer no-shadow>
+	<ion-grid class="background_nbm_footer">
+		<ion-row *ngIf="diskonopt != 0">
+			<ion-col col-3 style="padding-left: 0px;">Diskon</ion-col>
+			<ion-col col-1 ion-text text-center>:</ion-col>
+			<ion-col col-2 ion-text color="jdid">{{ diskonopt }}%</ion-col>
+			<ion-col col-1 ion-text text-right>Rp.</ion-col>
+			<ion-col col-4 ion-text text-right color="dark">- <span style="text-decoration: line-through;">{{ cashdiskonopt }}</span></ion-col>
+			<ion-col col-1 ion-text text-right>
+				<ion-icon name="close-circle" color="jdid" (click)="funcDiskonOptionalClear()"></ion-icon>
+			</ion-col>
+		</ion-row>
+		<ion-row *ngIf="diskonspc != 0">
+			<ion-col col-3 style="padding-left: 0px;">Diskon Khusus</ion-col>
+			<ion-col col-1 ion-text text-center>:</ion-col>
+			<ion-col col-2 ion-text color="jdid">{{ diskonspc }}%</ion-col>
+			<ion-col col-1 ion-text text-right>Rp.</ion-col>
+			<ion-col col-4 ion-text text-right color="dark">- <span style="text-decoration: line-through;">{{ cashdiskonspc }}</span></ion-col>
+			<ion-col col-1 ion-text text-right>
+				<ion-icon name="checkmark-circle" color="secondary"></ion-icon>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-row>
+		<ion-col col-5>
+			<p ion-text color="dark" no-maargin no-padding>Total : <span ion-text color="danger">Rp. {{ harga }}</span></p>
+		</ion-col>
+		<ion-col col-7>
+			<ion-row no-padding no-margin>
+				<ion-col col-3 no-padding no-margin>
+					<div ion-button color="dark" full (click)="buttonMinus()">
+						<ion-icon name="remove"></ion-icon>
+					</div>
+				</ion-col>
+				<ion-col col-6>
+					<ion-input value="{{ quantitas }}" text-center type="number" [(ngModel)]="quantitas" (change)="qtyInput($event)" name="inputstepper"></ion-input>
+				</ion-col>
+				<ion-col col-3 no-padding no-margin>
+					<div ion-button color="dark" full (click)="buttonPlus()">
+						<ion-icon name="add"></ion-icon>
+					</div>
+				</ion-col>
+			</ion-row>
+		</ion-col>
+	</ion-row>
+	<ion-row no-padding>
+		<ion-col col-6 no-padding>
+			<ion-buttons (click)="batalButton()">
+				<button ion-button text-capitalize color="dark" full>Batal</button>
+			</ion-buttons>
+		</ion-col>
+		<ion-col col-6 no-padding>
+			<ion-buttons (click)="buttonKeKeranjang()">
+				<button ion-button text-capitalize icon-left color="kuning" full>
+					<ion-icon name="ios-cart"></ion-icon>
+					Masuk Keranjang
+				</button>
+			</ion-buttons>
+		</ion-col>
+	</ion-row>
+</ion-footer>

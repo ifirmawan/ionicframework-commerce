@@ -1,0 +1,183 @@
+page-detail {
+	$gradient: color($colors, 'kuning'),
+	#ffb819;
+	$radius: 10px;
+	$visual-height: 68%;
+	$datas-height: calc(100% - #{$visual-height}+2px);
+	:root {
+		font-size: 16px;
+	}
+	* {
+		box-sizing: border-box;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		float: left;
+	}
+	ion-navbar {
+		position: fixed;
+		z-index: 3;
+		.toolbar-background {
+			background: transparent !important;
+		}
+	}
+	.container {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		margin: auto;
+	}
+	.card-profile {
+		float: left;
+		position: absolute;
+		width: 100%;
+		height: 80vh;
+		background: #fff;
+		z-index: 1;
+		box-shadow: 0 0 5px rgba(black, 0.1);
+		&_visual {
+		  border-bottom: 1px solid #eee;
+		  height: $visual-height;
+		  overflow: hidden;
+		  position: relative;
+		  background-image: url(../assets/imgs/noimages.png);
+		  background-color: #FFFFFF;
+		  &:before,
+		  &:after {
+		    display: block;
+		    content: '';
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    z-index: 0;
+		    opacity: 0.5;
+		    mix-blend-mode: lighten;
+		  }
+		  &:before {
+		    filter: grayscale(100%);
+		  }
+		  &:after {
+		    z-index: 2;
+		    mix-blend-mode: lighten;
+		    opacity: 1;
+		  }
+
+		  img {
+		  	width: 100%;
+		  	height: 100%;
+		  }
+		}
+		&_user-infos {
+		  position: absolute;
+		  z-index: 3;
+		  left: 0;
+		  right: 0;
+		  margin: auto;
+		  top: calc(#{$visual-height} - 100px);
+		  color: #fff;
+		  text-align: center;
+		  a {
+		    width: 64px;
+		    height: 64px;
+		    position: absolute;
+		    left: 0;
+		    right: 0;
+		    background: {
+		      color: #F96B4C;
+		      image: linear-gradient($gradient);
+		    }
+		    display: block;
+		    clear: both;
+		    margin: auto;
+		    border-radius: 100%;
+		    top: calc(500% + 66px);
+		    overflow: hidden;
+		    &:after {
+		      content: '';
+		      font-style: normal;
+		      position: absolute;
+		      width: 100%;
+		      height: 100%;
+		      display: block;
+		      background: {
+		        repeat: no-repeat;
+		        size: 30%;
+		        position: center center;
+		      }
+		      left: 0;
+		      top: 0;
+		    }
+		  }
+		  .infos_name,
+		  .infos_nick {
+		    display: block;
+		    clear: both;
+		    padding: .5em 0;
+		    padding-top: 0;
+		    position: absolute;
+		    width: 100%;
+		    text-align: center;
+		    font-size: 18px;
+		    top: 8px;
+		    font-weight: 800;
+		  }
+		  .infos_nick {
+		    top: 32px;
+		    font-size: 14px;
+		    font-weight: 300;
+		  }
+		}
+		&_user-stats {
+		  background: #fff;
+		  padding-bottom: 1em;
+		  float: left;
+		  width: 100%;
+		  height: $datas-height;
+		  border-bottom-left-radius: $radius;
+		  border-bottom-right-radius: $radius;
+		  .stats-holder {
+		    position: relative;
+		    margin-top: 1em;
+		    width: 100%;
+		    display: flex;
+		  }
+		  .user-stats {
+		    flex: 1;
+		    text-align: center;
+		    strong {
+		      display: block;
+		      float: left;
+		      clear: both;
+		      width: 100%;
+		      color: #B3B1B2;
+		      font-size: 14px;
+		      font-weight: 500;
+		      letter-spacing: -0.2px;
+		    }
+		    span {
+		      font-size: 26px;
+		      color: #5E5E5E;
+		      padding: .18em 0;
+		      display: inline-block;
+		    }
+		  }
+		}
+	}
+
+	.deskripsi-produk {
+		p {
+			margin-bottom: 0.5em;
+			margin-top: 1em;
+		}
+	}
+
+	.background_nbm_footer {
+		background-color: #fff;
+	}
+}

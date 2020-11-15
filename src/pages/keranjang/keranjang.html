@@ -1,0 +1,81 @@
+<!--
+  Generated template for the KeranjangPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+	<ion-navbar color="kuning">
+		<ion-buttons start *ngIf="platform.is('ios')">
+			<button ion-button icon-only >
+				<ion-icon name="cart" item-start></ion-icon>
+			</button>
+	    </ion-buttons>
+
+		<ion-title>KERANJANG</ion-title>
+		
+		<ion-buttons end>
+			<button ion-button icon-only (click)="goToSearch()">
+				<ion-icon name="search" item-start></ion-icon>
+			</button>
+	    </ion-buttons>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+	<div *ngIf="items == 0" float>
+		<img src="assets/imgs/images_none_cart.gif">
+		<h4 text-center>KERANJANG KOSONG!</h4>
+	</div>
+
+	<ion-list *ngIf="items != 0">
+		
+		<ion-list-header color="light">
+			<ion-label no-margin>
+				<ion-row align-items-center>
+					<ion-col col-3>Semua</ion-col>
+					<ion-col col-5>
+						Total: {{ count }} Kuantitas<br/>
+						<strong ion-text color="jdid">Rp, {{ total }}</strong>
+					</ion-col>
+					<ion-col col-4>
+						<button ion-button full color="dark" mode="ios" round (click)="goToPilihToko()">Lanjutkan</button>
+					</ion-col>
+				</ion-row>
+			</ion-label>
+			<ion-checkbox color="danger" [checked]="checkall" (click)="funcCheckAll()" mode="ios"></ion-checkbox>
+		</ion-list-header>
+		<ion-item-sliding *ngFor="let item of items; let i = index">
+			<ion-item>
+				<ion-label no-margin>
+					<ion-item no-lines>
+						<ion-thumbnail item-start>
+							<img src="{{ item.path_gambar }}">
+						</ion-thumbnail>
+						<h3><b>{{ item.nama | uppercase }}</b></h3>
+						<p>{{ item.ket }} &nbsp;</p>
+						<ion-badge color="kuning" *ngIf="item.diskon_spc != 0">Diskon Grosir : - {{ item.diskon_spc }}%</ion-badge>
+						<ion-badge color="kuning" *ngIf="item.diskon_opt != 0">Diskon Sales : - {{ item.diskon_opt }}%</ion-badge>
+						<h5 ion-text color="jdid"><b>Rp, {{ item.total }}</b></h5>
+						<p style="text-decoration: line-through" *ngIf="item.diskon_spc != 0 || item.diskon_opt != 0">Rp, {{ item.harga * item.qty }}</p>
+					</ion-item>
+				</ion-label>
+				<ion-icon name="swap" item-end></ion-icon>
+				<ion-checkbox [checked]="item.checked" (ionChange)="funcCheked(i, $event.checked)" color="danger" mode="ios"></ion-checkbox>
+			</ion-item>
+			<ion-item-options side="right">
+				<button ion-button color="primary">
+					<ion-input type="number" text-center style="max-width: 8rem;" value="{{ item.qty }}" (ionBlur)="funcChangeQty(i, $event.value)"></ion-input>
+				</button>
+				<button ion-button color="danger" icon-only (click)="funcDeleteCart(i)">
+					<ion-icon name="trash"></ion-icon>
+					Hapus
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+
+	</ion-list>
+</ion-content>

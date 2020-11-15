@@ -1,0 +1,55 @@
+page-kategori {
+	.list-tabs-nbm {
+		position: relative;
+		float: left;
+		width: 35%;
+		height: 100%;
+	}
+	.list-container-tabs-nbm {
+		position: relative;
+		float: left;
+		width: 65%;
+		height: 100%;
+	}
+	.lencana-nbm {
+		position: absolute;
+		top: 0;
+		right: 1rem;
+		width: 25px;
+	}
+	.img-brands-nbm {
+		min-height: 6em;
+		img {
+			height: 100%;
+			width: 100%;
+			background: url(../assets/imgs/noimages.png);
+			background-size: contain;
+    		background-position: center;
+		}
+	}
+	.scroll-fix-nmb {
+		position: absolute;
+		top:0;
+	    bottom:0;
+	    right:0;
+	    left:0;
+		overflow: auto;
+		padding-right: 1px;
+
+		ion-segment {
+			background-color: color($colors, 'light');
+		}
+
+		ion-segment-button {
+			border-bottom: 1px solid #eaeaea !important;
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+		}
+
+		ion-segment-button.segment-button:last-of-type, ion-segment-button.segment-button:first-of-type , ion-segment-button.segment-button{
+			border-radius: 0px;
+			text-transform: uppercase;
+			border: none;
+		}
+	}
+}

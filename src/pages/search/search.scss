@@ -1,0 +1,16 @@
+page-search {
+	.toolbar .searchbar-ios .searchbar-input {
+		background-color: #fff;
+	}
+	
+	.highlightText {
+	    background: yellow;
+	}
+
+	ion-item {
+		img {
+			background-image: url(../assets/imgs/noimages.png);
+			background-size: 100% 100%;
+		}
+	}
+}
